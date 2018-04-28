@@ -9,24 +9,24 @@ import { DataProvider } from '../../providers/data/data';
 })
 export class HomePage {
 
-  dropoffs = [];
+  public dropoffs = null;
+  choice = 0;
 
   constructor(public navCtrl: NavController, private dataFinder: DataProvider) {
-      /*this.jsonRetriever.getData().subscribe((data) => {
-        console.log("What's in that data?", data);
-        this.myjsondata = data;
-      });*/
-    //jsonRetriever.testMe();
   }
 
   ionViewDidLoad(){
-    this.dataFinder.getJSONDataAsync("./assets/deliveries-sample.json").then( data => {
+    this.dataFinder.getJSON("./assets/deliveries-sample.json").then( data => {
       this.SetQueryOptionsData(data);
     });
   }
 
   SetQueryOptionsData(data : any){
-    this.dropoffs = data.dropoffs;
+    this.dropoffs = data;
+  }
+
+  setChoice(newChoice){
+    this.choice = newChoice;
   }
 
 }
